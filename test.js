@@ -1,9 +1,5 @@
-
-## Usage
-
-```js
-var Spritesheet = require('spritesheet');
 var assert = require('assert');
+var Spritesheet = require('./');
 var sheet = new Spritesheet();
 sheet.add('file1.png', function(err) {
   assert.ifError(err);
@@ -15,4 +11,3 @@ sheet.add('file1.png', function(err) {
     });
   });
 });
-```

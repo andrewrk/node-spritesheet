@@ -1,0 +1,12 @@
+{
+  "name": "spritesheet",
+  "version": "0.0.0",
+  "description": "given a list of image files, create a spritesheet using cairo",
+  "main": "index.js",
+  "author": "Andrew Kelley <superjoe30@gmail.com>",
+  "license": "BSD",
+  "dependencies": {
+    "vec2d": "~0.1.1",
+    "canvas": "~1.0.2"
+  }
+}
