@@ -1,6 +1,6 @@
 {
   "name": "spritesheet",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "given a list of image files, create a spritesheet using cairo",
   "main": "index.js",
   "author": "Andrew Kelley <superjoe30@gmail.com>",
