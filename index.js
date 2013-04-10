@@ -8,7 +8,6 @@ var Vec2d = require('vec2d').Vec2d
 
 function Spritesheet() {
   this.sprites = {};
-  this.spriteList = [];
   this.size = new Vec2d(0, 0);
 }
 
@@ -18,7 +17,6 @@ Spritesheet.prototype.add = function(file, cb) {
     filename: file,
   };
   this.sprites[file] = sprite;
-  this.spriteList.push(sprite);
   fs.readFile(file, function(err, imgBuffer) {
     if (err) return cb(err);
     sprite.image.src = imgBuffer;
@@ -38,7 +36,8 @@ Spritesheet.prototype.calculatePositions = function() {
   // sets the .pos such that they are in a spritesheet
   self.size = new Vec2d(0, 0);
   var positions = [];
-  self.spriteList.forEach(function(sprite, spriteIndex) {
+  var list = mapToList(self.sprites);
+  list.forEach(function(sprite, spriteIndex) {
     positions.sort(byXThenY);
     sprite.pos = calcPos();
     var y = sprite.pos.y + sprite.image.height;
@@ -67,7 +66,7 @@ Spritesheet.prototype.calculatePositions = function() {
           return true;
         }
         for (var i = 0; i < spriteIndex; ++i) {
-          var placed = self.spriteList[i];
+          var placed = list[i];
           if (!(placed.pos.x + placed.image.width <= pos.x ||
                 placed.pos.x >= pos.x + sprite.image.width ||
                 placed.pos.y + placed.image.height <= pos.y ||
@@ -86,9 +85,10 @@ Spritesheet.prototype.render = function(file, cb) {
   // render to png
   var canvas = new Canvas(this.size.x, this.size.y);
   var context = canvas.getContext('2d');
-  this.spriteList.forEach(function(sprite) {
+  for (var id in this.sprites) {
+    var sprite = this.sprites[id];
     context.drawImage(sprite.image, sprite.pos.x, sprite.pos.y);
-  });
+  }
   var fsOut = fs.createWriteStream(file);
   var pngOut = canvas.createPNGStream();
   pngOut.on('error', cb);
@@ -117,4 +117,12 @@ function byXThenY(a, b) {
   } else {
     return diff;
   }
+}
+
+function mapToList(map) {
+  var list = [];
+  for (var id in map) {
+    list.push(map[id]);
+  }
+  return list;
 }
