@@ -47,17 +47,20 @@ Spritesheet.prototype.add = function(file, cb) {
 
 Spritesheet.prototype.save = function(file, cb) {
   var self = this;
-  sync(self, function() {
-    self.calculatePositions();
+  self.calculatePositions(function() {
     self.render(file, cb);
   });
 };
 
-Spritesheet.prototype.calculatePositions = function() {
-  if (this.dirty) {
-    calculatePositions(this);
-    this.dirty = false;
-  }
+Spritesheet.prototype.calculatePositions = function(cb) {
+  var self = this;
+  sync(self, function() {
+    if (self.dirty) {
+      calculatePositions(self);
+      self.dirty = false;
+      cb();
+    }
+  });
 };
 
 Spritesheet.prototype.render = function(file, cb) {
