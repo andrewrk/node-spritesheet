@@ -2,6 +2,9 @@
   "name": "spritesheet",
   "version": "0.0.1",
   "description": "given a list of image files, create a spritesheet using cairo",
+  "scripts": {
+    "test": "node test/test.js"
+  },
   "main": "index.js",
   "author": "Andrew Kelley <superjoe30@gmail.com>",
   "license": "BSD",
