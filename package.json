@@ -1,6 +1,6 @@
 {
   "name": "spritesheet",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "given a list of image files, create a spritesheet using cairo",
   "scripts": {
     "test": "node test/test.js"
