@@ -159,11 +159,11 @@ function calculatePositions(self) {
     self.size.boundMin(sprite.pos.offset(sprite.image.width, sprite.image.height));
 
     function calcPos() {
-      for (var pos_i = 0; pos_i < positions.length; ++pos_i) {
-        var pos = positions[pos_i];
+      for (var posI = 0; posI < positions.length; ++posI) {
+        var pos = positions[posI];
         var intersects = calcIntersects();
         if (!intersects) {
-          positions.splice(pos_i, 1);
+          positions.splice(posI, 1);
           return pos;
         }
       }
@@ -171,12 +171,8 @@ function calculatePositions(self) {
       return new Vec2d(self.size.x, 0);
 
       function calcIntersects(){
-        if (pos.x + sprite.image.width >= self.size.x) {
-          return true;
-        }
-        if (pos.y + sprite.image.height >= self.size.y) {
-          return true;
-        }
+        if (pos.x + sprite.image.width > self.size.x) return true;
+        if (pos.y + sprite.image.height > self.size.y) return true;
         for (var i = 0; i < spriteIndex; ++i) {
           var placed = list[i];
           if (!(placed.pos.x + placed.image.width <= pos.x ||
