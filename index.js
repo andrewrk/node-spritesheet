@@ -148,6 +148,7 @@ function calculatePositions(self) {
   self.size = new Vec2d(0, 0);
   var positions = [];
   var list = mapToList(self.sprites);
+  list.sort(byReverseHeightThenFilename);
   list.forEach(function(sprite, spriteIndex) {
     positions.sort(byXThenY);
     sprite.pos = calcPos();
