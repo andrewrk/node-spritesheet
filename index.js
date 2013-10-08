@@ -6,7 +6,7 @@ var Vec2d = require('vec2d').Vec2d
   , path = require('path')
   , assert = require('assert')
   , util = require('util')
-  , Canvas = require('canvas')
+  , Canvas = require('canvas-superjoe')
   , Image = Canvas.Image
 
 util.inherits(Spritesheet, EventEmitter);
