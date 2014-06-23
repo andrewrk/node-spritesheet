@@ -1,13 +1,13 @@
 module.exports = Spritesheet;
 
-var Vec2d = require('vec2d').Vec2d
-  , fs = require('fs')
-  , EventEmitter = require('events').EventEmitter
-  , path = require('path')
-  , assert = require('assert')
-  , util = require('util')
-  , Canvas = require('canvas-superjoe')
-  , Image = Canvas.Image
+var Vec2d = require('vec2d').Vec2d;
+var fs = require('fs');
+var EventEmitter = require('events').EventEmitter;
+var path = require('path');
+var assert = require('assert');
+var util = require('util');
+var Canvas = require('canvas');
+var Image = Canvas.Image;
 
 util.inherits(Spritesheet, EventEmitter);
 function Spritesheet() {
